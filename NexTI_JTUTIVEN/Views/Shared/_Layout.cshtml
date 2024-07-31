@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - CA</title>
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/template/css/styles.css" rel="stylesheet" />
+    <link href="~/template/css/site.css" rel="stylesheet" />
+
+    <link href="~/datatables/datatables.min.css" rel="stylesheet" />
+    <link href="~/datatables/datatables-1.13.8/css/datatables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/datatables/responsive-2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/datatables/buttons-2.4.2/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/datatables/autofill-2.6.0/css/autofill.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/datatables/searchbuilder-1.6.0/css/searchbuilder.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/datatables/fixedcolumns-4.3.0/css/fixedcolumns.bootstrap5.min.css" rel="stylesheet" />
+
+
+
+    <link href="~/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Datepicker/datepicker.css" rel="stylesheet" />
+    <link href="~/select2/select2.min.css" rel="stylesheet" />
+
+    <link href="~/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+    <link href="~/Imagenes/logo.png" type="image/png" rel="icon" />
+    <style>
+        .selected {
+            background-color: var(--bs-primary) !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+
+    <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" href=""></a>
+        <!-- Sidebar Toggle-->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <a class="nav-link" id="txtUsuarioLogin"></a>
+            </div>
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" onclick="MostarModal()">Cambiar Clave</a></li>
+                    <li><hr class="dropdown-divider" /></li>
+                    <li><a class="dropdown-item" href="@Url.Action("InicioSesion","TecnomoAcceso")">Cerrar Sesión</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Administracion</div>
+                        <a class="nav-link" href="@Url.Action("PerfilWeb","TecnomoAcceso")" id="btnPerfilWeb">
+                            <div class="sb-nav-link-icon"><i class="fas fa-house-user"></i></div>
+                            Eventos
+                        </a>
+
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    Authentication
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="login.html">Login</a>
+                                        <a class="nav-link" href="register.html">Register</a>
+                                        <a class="nav-link" href="password.html">Forgot Password</a>
+                                    </nav>
+                                </div>
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                    Error
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="401.html">401 Page</a>
+                                        <a class="nav-link" href="404.html">404 Page</a>
+                                        <a class="nav-link" href="500.html">500 Page</a>
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small" id="txtCliente"></div>
+
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    @RenderBody()
+                </div>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        @* <img src="~/Imagenes/logo.png" width="30" height="22" class="img-fluid rounded-start"> *@
+                        <div id="txtCopyRight" class="text-muted">
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="~/jquery/jquery-3.7.1.js"></script>
+    <script src="~/bootstrap/js/popper.min.js"></script>
+
+    <script src="~/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="~/fontawesome/js/all.js"></script>
+
+    <script src="~/jquery-ui/jquery-ui.js"></script>
+    <script src="~/loadingoverlay/loadingoverlay.min.js"></script>
+
+    <script src="~/datatables/datatables.min.js"></script>
+    <script src="~/datatables/responsive-2.5.0/js/datatables.responsive.min.js"></script>
+    <script src="~/datatables/responsive-2.5.0/js/responsive.bootstrap5.min.js"></script>
+    <script src="~/datatables/buttons-2.4.2/js/buttons.datatables.min.js"></script>
+    <script src="~/datatables/jszip-3.10.1/jszip.min.js"></script>
+    <script src="~/datatables/pdfmake-0.2.7/pdfmake.min.js"></script>
+    <script src="~/datatables/pdfmake-0.2.7/vfs_fonts.js"></script>
+    <script src="~/datatables/buttons-2.4.2/js/buttons.html5.min.js"></script>
+    <script src="~/datatables/buttons-2.4.2/js/buttons.print.min.js"></script>
+    <script src="~/datatables/autofill-2.6.0/js/autofill.bootstrap5.min.js"></script>
+    <script src="~/datatables/searchbuilder-1.6.0/js/searchbuilder.bootstrap5.min.js"></script>
+    <script src="~/datatables/fixedcolumns-4.3.0/js/fixedcolumns.bootstrap5.min.js"></script>
+
+
+    <script src="~/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <script src="~/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/jquery-validate/jquery.validate.unobtrusive.js"></script>
+    <script src="~/jquery-validate/additional-methods.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+
+    <script src="~/template/js/scripts.js"></script>
+    @RenderSection("Scripts", false)
+
+</body>
+
+@*@RenderBody()
+
+
+    <li>@Html.ActionLink("Inicio", "Index", "TecnomoAcceso", new { area = "" }, new { @class = "nav-link" })</li>
+    <li>@Html.ActionLink("Acerca de", "About", "TecnomoAcceso", new { area = "" }, new { @class = "nav-link" })</li>
+    <li>@Html.ActionLink("Contacto", "Contact", "TecnomoAcceso", new { area = "" }, new { @class = "nav-link" })</li>*@
+
+
+</html>
