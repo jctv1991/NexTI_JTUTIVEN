@@ -127,7 +127,7 @@ namespace miWebAdmin.Controllers
             try
             {
                 // Construir la URL para la solicitud DELETE
-                string requestUri = miURL +  "DeleteEvento?id={id}";
+                string requestUri = miURL +  "DeleteEvento?id=" + id;
 
                 // Realizar la solicitud DELETE a la API
                 HttpResponseMessage response = await _httpClient.DeleteAsync(requestUri);

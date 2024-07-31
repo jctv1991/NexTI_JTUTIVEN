@@ -157,8 +157,7 @@ $("#tbl tbody").on("click", '.btn-eliminar-evento', function () {
                     dataType: "json",
                     success: function (response) {
                         if (response.resultado) {
-                            datatable.ajax.reload(); // Recargar los datos de la tabla
-                            $("#lblEliminadoEvento").show().text("Evento eliminado exitosamente.");
+                            cargaDatos();
                         } else {
                             $("#lblEliminadoEvento").show().text(response.mensaje);
                         }

@@ -59,7 +59,6 @@ namespace miAPI.Controllers
             }
         }
 
-        // DELETE: api/Eventos/{id}
         [HttpDelete("DeleteEvento")]
         public async Task<IActionResult> DeleteEvento(int id)
         {
